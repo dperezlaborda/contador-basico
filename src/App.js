@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import React , { useState } from 'react';
+import Contador from './Contador';
 import './App.css';
 
 function App() {
+
+  const [counter, setCounter] = useState(0);
+
+  const addNumber = () => {
+    setCounter( counter + 1);
+  }
+
+  const removeNumber = () => {
+    if(counter !== 0){
+      setCounter(counter - 1)
+    }else{
+      console.log("No se puede restar")
+    }
+  }
+
+  const resetNumber = () => {
+    setCounter(0);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Contador 
+        counter={counter}
+        addNumber={addNumber}
+        removeNumber={removeNumber}
+        resetNumber={resetNumber}
+      />
     </div>
   );
 }
